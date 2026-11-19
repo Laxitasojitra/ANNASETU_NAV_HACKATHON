@@ -1,4 +1,4 @@
-# AnnaSetu: AI food rescue (hackathon prototype)
+# AnnaSetu: AI food rescue
 
 Snap a photo of surplus food → AI identifies the dishes and meals → the shelf-life model checks safety → the matching agent picks NGOs and a volunteer → live pickup tracking → a CSR/ESG impact certificate.
 
@@ -78,20 +78,8 @@ Go to **http://127.0.0.1:8000** in Chrome.
 The badge at the top right says **"AI on"** when your key works.
 API docs (useful to show judges): **http://127.0.0.1:8000/docs**
 
-### 6. Demo on your phone (optional)
-Connect the phone and laptop to the same Wi-Fi, then start the server with:
-```
-uvicorn backend.main:app --host 0.0.0.0 --port 8000
-```
-Find your laptop's IP (`ipconfig` on Windows, `ifconfig` on Mac) and open `http://<laptop-ip>:8000` on the phone. Allow Python through the firewall if Windows asks.
 
-## Demo script (3 minutes)
-1. **Donate:** upload a photo of a buffet or a large container of food, then tap **Analyze with AI**. Point out the dish names, Hindi names, meal estimate and hygiene notes.
-2. Drag **Cooked how long ago** up and watch dishes turn from green to red. This is the safety check.
-3. **Find NGOs and plan pickup:** the agent explains its choice, splits the meals across NGOs and shows the route.
-4. Switch the WhatsApp alerts between **Hindi** and **English**.
-5. **Dispatch volunteer:** NGOs reply YES (human in the loop), then live tracking runs.
-6. **Impact:** show the meals and CO₂ figures, the forecast and the **CSR certificate with its audit ID**.
+
 
 ## API endpoints
 | Method | Path | What it does |
@@ -105,18 +93,7 @@ Find your laptop's IP (`ipconfig` on Windows, `ifconfig` on Mac) and open `http:
 | POST | `/api/rescues/complete` | Saves a delivered rescue, returns its audit ID |
 | GET | `/api/impact` | Dashboard numbers, forecast, leaderboard, latest certificate |
 
-## Troubleshooting
-| Problem | Fix |
-|---|---|
-| `python` not found | Reinstall Python with "Add to PATH" ticked, or use `py` on Windows |
-| PowerShell blocks `activate` | Run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`, then retry |
-| Badge says "Sample mode" | The key is missing from `.env`. Save the file and restart the server |
-| "Gemini request failed … not found" | Google renamed the model. Set `GEMINI_MODEL` in `.env` to a current Flash model listed in AI Studio, e.g. `gemini-2.5-flash` |
-| "Gemini request failed … 429 / quota" | Free-tier rate limit. Wait a minute and retry |
-| Port 8000 in use | Add `--port 8001` and open http://127.0.0.1:8001 |
-| Reset the impact history | Stop the server and delete `backend/annasetu.db` |
-
-## What to build next (for the pitch)
+## What to build next 
 - Real NGO and volunteer sign-up, stored in PostgreSQL with PostGIS
 - WhatsApp Business API (e.g. via Twilio) to send the alerts for real
 - Google Maps for real roads and live GPS tracking
